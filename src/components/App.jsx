@@ -1,26 +1,18 @@
-import { useEffect, useState } from 'react'
+import Counter from './Counter'
 import '../styles/App.css'
+import { useState } from 'react'
 
-const App = () => {
-  /* reglas básicas de los hooks */
-  /*
-    1. Se deben en la cabecera del componente
-    2. No se pueden llamar dentro de condicionales, ciclos o scopes
-  */
-  const [username, setUserName] = useState('Bruno')
+export default function App () {
+  const [isView, setIsView] = useState(true)
 
-  const handleChangeName = () => setUserName('Jared')
-
-  useEffect(() => {
-    handleChangeName()
-  })
+  const handleView = () => {
+    setIsView(!isView)
+  }
 
   return (
     <div className='App'>
-      <h2>{username}</h2>
-      {/* <button onClick={handleChangeName}>Cambiar</button> */}
+      {isView && <Counter />}
+      <button onClick={handleView}>Toggle</button>
     </div>
   )
 }
-
-export default App
