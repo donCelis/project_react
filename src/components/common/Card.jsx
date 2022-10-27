@@ -6,9 +6,10 @@ export default function Card ({ ...props }) {
         src={flags.svg}
         className='card-img-top'
         alt={name.common}
+        lazy='loading'
       />
       <div className='card-body'>
-        <h5 className='card-title'>{name.common}</h5>
+        <h5 className='card-title m-0'>{name.common}</h5>
       </div>
     </div>
   )
