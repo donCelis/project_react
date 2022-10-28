@@ -1,4 +1,3 @@
-import '../styles/App.css'
 import { useState } from 'react'
 import Counter from './common/Counter'
 
@@ -13,6 +12,9 @@ export default function App () {
     <div className='App'>
       {isView && <Counter />}
       <button onClick={handleView}>Toggle</button>
+      <div>
+        <a href='/prueba'>Prueba</a>
+      </div>
     </div>
   )
 }
