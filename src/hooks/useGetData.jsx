@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import { fetcher } from '../services/fetcher'
 
-export default function useGetData (apiUrl) {
+export default function useGetData (url) {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -9,10 +10,11 @@ export default function useGetData (apiUrl) {
 
   const getData = async () => {
     try {
-      const req = await fetch(apiUrl)
+      // const req = await fetch(apiUrl)
       // const req = await fetch(apiUrl, { signal })
-      req.status === 200 && setData(await req.json())
-      req.status === 404 && setError(req.message)
+      const req = await fetcher({ url })
+      setData(req)
+      // !req.ok && setError(req.statusText)
     } catch (error) {
       setError(String(error))
     } finally {
@@ -23,8 +25,8 @@ export default function useGetData (apiUrl) {
   useEffect(() => {
     getData()
 
-    /* return () => abort() */
-  }, [apiUrl])
+    // return () => abort()
+  }, [url])
 
   useEffect(() => {
     if (error !== '') toast.error(error)
