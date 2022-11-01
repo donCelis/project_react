@@ -5,13 +5,14 @@ export default function useGetData (apiUrl) {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
-  const { signal, abort } = new AbortController()
+  // const { signal, abort } = new AbortController()
 
   const getData = async () => {
     try {
-      const req = await fetch(apiUrl, { signal })
-      const res = await req.json()
-      setData(res)
+      const req = await fetch(apiUrl)
+      // const req = await fetch(apiUrl, { signal })
+      req.status === 200 && setData(await req.json())
+      req.status === 404 && setError(req.message)
     } catch (error) {
       setError(String(error))
     } finally {
@@ -22,7 +23,7 @@ export default function useGetData (apiUrl) {
   useEffect(() => {
     getData()
 
-    return () => abort()
+    /* return () => abort() */
   }, [apiUrl])
 
   useEffect(() => {

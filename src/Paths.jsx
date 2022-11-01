@@ -9,7 +9,9 @@ export default function Paths () {
     <Routes>
       <Route path='/' element={<Navigate to='/countries' />} />
       <Route path='/countries' element={<Countries />} />
-      <Route path='/country' element={<Country />} />
+      <Route path='/country/:code' element={<Country />} />
+      <Route path='/404' element={<p className='text-center'>Page not found</p>} />
+      <Route path='*' element={<Navigate to='/404' />} />
     </Routes>
   )
 }
