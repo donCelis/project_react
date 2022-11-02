@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import useDebounce from '../hooks/useDebounce'
 
-export default function Form () {
+export default function FormDebounce () {
   const [value, setValue] = useState('')
   const [users, setUsers] = useState([])
 
