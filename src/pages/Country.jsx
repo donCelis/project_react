@@ -24,7 +24,7 @@ export default function Country () {
         <title>{name.common}</title>
       </Helmet>
       <section className='container py-5'>
-        <Link className='btn btn-primary' to='/'>
+        <Link className='btn btn-primary' to='/countries'>
           Home
         </Link>
         <article className='text-white text-center'>
