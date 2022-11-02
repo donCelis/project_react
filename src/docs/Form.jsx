@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import useDebounce from '../hooks/useDebounce'
 
 export default function Form () {
   const [value, setValue] = useState('')
   const [users, setUsers] = useState([])
+
+  const debouncedValue = useDebounce(value, 500)
 
   const searchUsers = async () => {
     const response = await axios.get(
@@ -14,14 +17,14 @@ export default function Form () {
     }
   }
 
-  useEffect(() => {
-    searchUsers()
-  }, [value])
-
   const handleSubmit = (event) => {
     event.preventDefault()
     setValue(event.target.value)
   }
+
+  useEffect(() => {
+    searchUsers()
+  }, [debouncedValue])
 
   return (
     <section className='container py-5 text-white'>
