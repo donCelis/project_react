@@ -10,7 +10,7 @@ import Dashboard from './docs/Dashboard'
 import { demoRoutes } from './config'
 
 export default function Paths () {
-  const demoIndex = demoRoutes[0].path
+  const [{ path: indexPath }] = demoRoutes
   return (
     <Routes>
       <Route path='/' element={<Navigate to='/countries' replace />} />
@@ -22,12 +22,12 @@ export default function Paths () {
       <Route path='/form' element={<FormHandle />} />
       <Route path='/dashboard' element={<Dashboard />}>
         {/* <Route index element={<RenderComp text='dashboard' />} /> */}
-        <Route index element={<Navigate to={demoIndex} />} />
-        {demoRoutes.map((item, key) => (
+        <Route index element={<Navigate to={indexPath} />} />
+        {demoRoutes.map(({ path }, key) => (
           <Route
             key={key}
-            path={item.path}
-            element={<RenderComp text={item.path} />}
+            path={path}
+            element={<RenderComp text={path} />}
           />
         ))}
       </Route>
